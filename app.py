@@ -1,9 +1,8 @@
 import streamlit as st
-import cv2
 import tempfile
 from PIL import Image
-import torch
 from ultralytics import YOLO
+import imageio
 
 model = YOLO("best.pt")
 
@@ -47,22 +46,5 @@ elif choice == "vedeo":
 
         cap.release()
 
-elif choice == "camera":
-    st.write("camera on real time")
-    run = st.checkbox("start camera")
-
-    if run:
-        cap = cv2.VideoCapture(0)  
-        stframe = st.empty()
-
-        while run and cap.isOpened():
-            ret, frame = cap.read()
-            if not ret:
-                break
-
-            results = model.predict(frame)
-            annotated_frame = results[0].plot()
-
-            stframe.image(annotated_frame, channels="BGR")
-
-        cap.release()
+elif choice == "Camera":
+    st.warning("Camera is not supported on Streamlit Cloud. Please run locally on your PC.")
