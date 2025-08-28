@@ -7,4 +7,5 @@ scikit-learn
 ultralytics
 torch
 torchvision
-opencv-python-headless
+opencv-python
+
